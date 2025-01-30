@@ -1,23 +1,23 @@
 package com.ust.DTO;
 
 public class Employee {
-    private String employeeId;
+    private String employeeid;
     private String name;
     private String projectId;
     private String status;
     public Employee() {
     }
-    public Employee(String employeeId, String name, String projectId, String status) {
-        this.employeeId = employeeId;
+    public Employee(String employeeid, String name, String projectId, String status) {
+        this.employeeid = employeeid;
         this.name = name;
         this.projectId = projectId;
         this.status = status;
     }
-    public String getEmployeeId() {
-        return employeeId;
+    public String getEmployeeid() {
+        return employeeid;
     }
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeid(String employeeid) {
+        this.employeeid = employeeid;
     }
     public String getName() {
         return name;
@@ -38,6 +38,4 @@ public class Employee {
         this.status = status;
     }
 
-    // Constructors, Getters, and Setters
-    
 }
