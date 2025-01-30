@@ -40,12 +40,25 @@ public class Project {
     @Column(nullable = false)
     private String status;
 
-    // Getters and Setters
-    public String getprojectId() {
+    public Project() {
+    }
+
+    public Project(String projectid, String name, String clientName, Double budget, LocalDate startDate,
+            LocalDate endDate, String status) {
+        this.projectid = projectid;
+        this.name = name;
+        this.clientName = clientName;
+        this.budget = budget;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+    }
+
+    public String getProjectid() {
         return projectid;
     }
 
-    public void setprojectId(String projectid) {
+    public void setProjectid(String projectid) {
         this.projectid = projectid;
     }
 
@@ -96,4 +109,7 @@ public class Project {
     public void setStatus(String status) {
         this.status = status;
     }
-}
+
+    // Getters and Setters
+    
+    }
