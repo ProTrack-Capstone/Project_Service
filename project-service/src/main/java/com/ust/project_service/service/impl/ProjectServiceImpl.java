@@ -1,19 +1,25 @@
 package com.ust.project_service.service.impl;
 
 
+import com.ust.project_service.client.EmployeeClient;
 import com.ust.project_service.entity.Project;
 import com.ust.project_service.repository.ProjectRepository;
 import com.ust.project_service.service.ProjectService;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import com.ust.DTO.Employee;
+
 @Service
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
+    private final EmployeeClient employeeClient;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, EmployeeClient employeeClient) {
         this.projectRepository = projectRepository;
+        this.employeeClient = employeeClient;
     }
 
     @Override
@@ -27,14 +33,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project getProjectById(Long id) {
-        return projectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Project not found with id: " + id));
+    public Project getProjectById(String projectid) {
+        return projectRepository.findById(projectid)
+                .orElseThrow(() -> new RuntimeException("Project not found with id: " + projectid));
     }
 
     @Override
-    public Project updateProject(Long id, Project project) {
-        Project existingProject = getProjectById(id);
+    public Project updateProject(String projectid, Project project) {
+        Project existingProject = getProjectById(projectid);
         existingProject.setName(project.getName());
         existingProject.setClientName(project.getClientName());
         existingProject.setBudget(project.getBudget());
@@ -45,7 +51,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void deleteProject(Long id) {
-        projectRepository.deleteById(id);
+    public void deleteProject(String projectid) {
+        projectRepository.deleteById(projectid);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByProjectId(String projectId) {
+        return employeeClient.getEmployeesByProjectId(projectId);
     }
 }

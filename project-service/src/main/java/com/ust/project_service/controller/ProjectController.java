@@ -1,12 +1,21 @@
 package com.ust.project_service.controller;
 
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+        import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ust.DTO.Employee;
 import com.ust.project_service.entity.Project;
 import com.ust.project_service.service.ProjectService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-        import java.util.List;
 
 @RestController
 @RequestMapping("/api/projects")
@@ -28,18 +37,25 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Project> getProjectById(@PathVariable Long id) {
-        return ResponseEntity.ok(projectService.getProjectById(id));
+    public ResponseEntity<Project> getProjectById(@PathVariable("id") String projectId) {
+        return ResponseEntity.ok(projectService.getProjectById(projectId));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable Long id, @RequestBody Project project) {
-        return ResponseEntity.ok(projectService.updateProject(id, project));
+    public ResponseEntity<Project> updateProject(@PathVariable ("id") String projectid, @RequestBody Project project) {
+        return ResponseEntity.ok(projectService.updateProject(projectid, project));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
-        projectService.deleteProject(id);
+    public ResponseEntity<Void> deleteProject(@PathVariable ("id") String projectid) {
+        projectService.deleteProject(projectid);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{projectId}/employees")
+    public ResponseEntity<List<Employee>> getEmployeesByProjectId(@PathVariable String projectId) {
+    List<Employee> employees = projectService.getEmployeesByProjectId(projectId);
+    return ResponseEntity.ok(employees);
+}
+
 }
