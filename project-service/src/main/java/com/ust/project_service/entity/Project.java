@@ -1,16 +1,26 @@
 package com.ust.project_service.entity;
 
 
-import jakarta.persistence.*;
-
 import java.time.LocalDate;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "projects")
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "custom-id-generator")
+    @GenericGenerator(
+            name = "custom-id-generator",
+            strategy = "com.ust.project_service.Generator.CustomIdGenerator"
+    )
+    private String projectid;
 
     @Column(nullable = false)
     private String name;
@@ -31,12 +41,12 @@ public class Project {
     private String status;
 
     // Getters and Setters
-    public Long getId() {
-        return id;
+    public String getprojectId() {
+        return projectid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setprojectId(String projectid) {
+        this.projectid = projectid;
     }
 
     public String getName() {
