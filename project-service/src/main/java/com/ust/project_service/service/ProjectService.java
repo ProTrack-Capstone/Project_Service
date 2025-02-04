@@ -18,4 +18,10 @@ public interface ProjectService {
 
     List<Employee> getEmployeesByProjectId(String projectId);
 
+    List<Employee> getUnassignedEmployees();
+
+    void updateEmployeesStatus(List<String> employeeIds, String projectId);
+
+    void assignEmployees(String projectId, List<String> employeeIds);
+
 }

@@ -20,10 +20,19 @@ public class Project {
             name = "custom-id-generator",
             strategy = "com.ust.project_service.Generator.CustomIdGenerator"
     )
-    private String projectid;
+    private String projectId;
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String projectDomain;
+
+    @Column(nullable = false)
+    private int numberOfEmployees;
+
+    @Column(nullable = false)
+    private String techStack;
 
     @Column(nullable = false)
     private String clientName;
@@ -43,23 +52,26 @@ public class Project {
     public Project() {
     }
 
-    public Project(String projectid, String name, String clientName, Double budget, LocalDate startDate,
-            LocalDate endDate, String status) {
-        this.projectid = projectid;
+    public Project(String projectId, String name, String clientName, Double budget, LocalDate startDate,
+            LocalDate endDate, String status, String projectDomain, int numberOfEmployees, String techStack) {
+        this.projectId = projectId;
         this.name = name;
         this.clientName = clientName;
         this.budget = budget;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
+        this.projectDomain = projectDomain;
+        this.numberOfEmployees = numberOfEmployees;
+        this.techStack = techStack;
     }
 
-    public String getProjectid() {
-        return projectid;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setProjectid(String projectid) {
-        this.projectid = projectid;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
     public String getName() {
@@ -110,6 +122,30 @@ public class Project {
         this.status = status;
     }
 
+    public String getProjectDomain() {
+        return projectDomain;
+    }
+
+    public void setProjectDomain(String projectDomain) {
+        this.projectDomain = projectDomain;
+    }
+
+    public int getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(int numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
+    }
+
+    public String getTechStack() {
+        return techStack;
+    }
+
+    public void setTechStack(String techStack) {
+        this.techStack = techStack;
+    }
+    
     // Getters and Setters
     
     }
