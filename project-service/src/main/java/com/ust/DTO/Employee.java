@@ -2,14 +2,16 @@ package com.ust.DTO;
 
 public class Employee {
     private String employeeid;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String projectId;
     private String status;
     public Employee() {
     }
-    public Employee(String employeeid, String name, String projectId, String status) {
+    public Employee(String employeeid, String firstName, String lastName, String projectId, String status) {
         this.employeeid = employeeid;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.projectId = projectId;
         this.status = status;
     }
@@ -19,11 +21,17 @@ public class Employee {
     public void setEmployeeid(String employeeid) {
         this.employeeid = employeeid;
     }
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     public String getProjectId() {
         return projectId;
